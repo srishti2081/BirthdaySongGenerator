@@ -1,0 +1,117 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body, #root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Mobile Frame */
+.mobile-frame {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  background-color: #000; /* fallback if image not loaded */
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Set height according to aspect ratio */
+.mobile-frame::before {
+  content: "";
+  display: block;
+  padding-top: 265%; /* Aspect ratio: height/width * 100 => 844/320 ≈ 265% */
+}
+
+/* Content inside mobile frame */
+.mobile-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Logo */
+.mobile-content img {
+  width: 70%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+/* Paragraphs */
+.mobile-content p {
+  color: #ffffff;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Button */
+.mobile-content button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  width: 75%;
+  max-width: 250px;
+  border: none;
+  border-radius: 50px;
+  background-color: #ffffff;
+  color: #6b21a8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.mobile-content button:hover {
+  transform: scale(1.05);
+}
+
+.mobile-content button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobile-content img {
+    width: 80%;
+  }
+  .mobile-content p {
+    font-size: 14px;
+  }
+  .mobile-content button {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-content img {
+    width: 75%;
+  }
+  .mobile-content p {
+    font-size: 16px;
+  }
+  .mobile-content button {
+    width: 70%;
+    padding: 12px;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,123 @@
+/* frontend/src/pages/Details1.css (Updated for full consistency) */
+
+.details-page {
+    /* FIX: Standardizing dimensions to match Register page */
+    max-width: 390px; 
+    margin: 0 auto; 
+    width: 100%;
+    min-height: 100vh; /* Match Register page height behavior */
+    padding-bottom: 40px; 
+    color: white; 
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Header inherited from Login/PPT style */
+.registration-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 10px; 
+    background-color: transparent;
+}
+
+.progress-section {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar-image {
+    width: 80%; 
+    max-width: 350px;
+}
+
+/* Main Form Area */
+.details-form-container {
+    padding: 0 25px; /* Defines the internal margin for inputs/selects */
+    text-align: center;
+}
+
+.details-title {
+    color: white;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Visuals Section (Present/Hat/Balloon) */
+.visuals-section {
+    padding: 15px 0;
+}
+
+.visual-present {
+    width: 300px; 
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Input/Select Fields */
+.input-field-group {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.input-label {
+    font-size: 1.1em;
+    color: white; 
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+    display: block; 
+}
+
+/* Custom Select/Dropdown Wrapper */
+.custom-select-wrapper {
+    position: relative;
+    /* FIX: Ensured fields are full width of the container padding */
+    max-width: 100%; 
+    margin: 0 auto;
+}
+
+/* Use white background for inputs/selects */
+.styled-input, .styled-select {
+    width: 100%; 
+    padding: 16px 20px;
+    border: none;
+    border-radius: 15px; 
+    font-size: 1.1em;
+    box-sizing: border-box;
+    background-color: white;
+    color: #333; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.styled-select {
+    -webkit-appearance: none; 
+    -moz-appearance: none;    
+    appearance: none;         
+}
+
+
+/* Proceed Button */
+.button-wrapper {
+    margin-top: 40px;
+    /* FIX: Ensured button is full width of the container padding */
+    max-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0; /* Padding is already on .details-form-container */
+}
+
+.proceed-button {
+    width: 100%;
+    padding: 18px; 
+    background-color: #FFC35B;
+    color: #333;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.4em;
+    font-weight: 800;
+}

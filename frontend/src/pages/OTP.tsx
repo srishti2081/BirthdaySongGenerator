@@ -1,0 +1,125 @@
+import { useState, useRef, useEffect } from "react";
+// import api from "../services/api"; // Removed for mock flow
+import "./OTP.css"; 
+
+const OTP_LENGTH = 4;
+const CORRECT_OTP = "1234"; // Hardcoded mock OTP value
+
+// Define Props for Modal
+interface OTPModalProps {
+  phone: string;
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+export default function OTP({ phone, onClose, onSuccess }: OTPModalProps) {
+  const [otp, setOtp] = useState(new Array(OTP_LENGTH).fill(""));
+  const [error, setError] = useState<string | null>(null); // State for displaying error
+
+  // Ref array for input elements
+  const inputRefs = useRef<HTMLInputElement[]>([]); 
+
+  // Function to handle changes in a single input box
+  const handleOtpChange = (element: HTMLInputElement, index: number) => {
+    if (isNaN(Number(element.value))) return; 
+
+    const newOtp = [...otp];
+    newOtp[index] = element.value.slice(-1); 
+    setOtp(newOtp);
+    setError(null); // Clear error on new input
+
+    if (element.value !== "" && index < OTP_LENGTH - 1) {
+      inputRefs.current[index + 1].focus();
+    }
+  };
+
+  // Function to handle backspace/deletion
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
+      inputRefs.current[index - 1].focus();
+    }
+  };
+
+  // MOCK: Client-side verification against "1234"
+  const handleVerify = () => {
+    const fullOtp = otp.join("");
+
+    if (fullOtp.length !== OTP_LENGTH) {
+      return setError("Please enter the full 4-digit OTP.");
+    }
+
+    if (fullOtp === CORRECT_OTP) {
+        onSuccess(); // Success! Triggers navigation to /details1
+    } else {
+        setError(`Invalid OTP. Please try again.`); 
+        // Clear the input boxes on failure for a better user experience
+        setOtp(new Array(OTP_LENGTH).fill("")); 
+        inputRefs.current[0].focus();
+    }
+  };
+
+  // Focus on the first input on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        if (inputRefs.current[0]) {
+          inputRefs.current[0].focus();
+        }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="otp-modal-overlay">
+      <div className="otp-modal-content">
+        <button className="close-button" onClick={onClose}>&times;</button>
+        
+        <h2 className="otp-title">Enter OTP</h2>
+        <p>A 4-digit code has been sent to **{phone}**</p> 
+
+        {/* OTP Input Boxes */}
+        <div className="otp-input-container">
+          {otp.map((data, index) => {
+            return (
+              <input
+                key={index}
+                className="otp-input-box"
+                type="text"
+                name="otp"
+                maxLength={1}
+                value={data}
+                onChange={(e) => handleOtpChange(e.target, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                ref={(el) => {
+                  if (el) {
+                    inputRefs.current[index] = el;
+                  }
+                }}
+              />
+            );
+          })}
+        </div>
+        
+        {/* Error message display */}
+        {error && (
+            <p style={{ color: 'red', fontSize: '0.9em', marginBottom: '10px' }}>
+                {error}
+            </p>
+        )}
+        
+        <div className="otp-resend">
+          <button className="resend-button" onClick={() => alert("Resending OTP...")}>
+            Resend OTP
+          </button>
+        </div>
+
+        <button 
+          className="otp-submit-button" 
+          onClick={handleVerify} 
+          disabled={otp.join("").length !== OTP_LENGTH}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+}

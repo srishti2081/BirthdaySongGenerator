@@ -1,0 +1,206 @@
+/* Register.css */
+
+:root {
+    --cadbury-purple: #29154c; 
+  }
+  
+  
+  .registration-page {
+    /* Styles for the main page container (retains background image, position) */
+    max-width: 390px; 
+    margin: 0 auto; 
+    min-height: 100vh;
+    padding: 0;
+    color: white; 
+    font-family: sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 100%;
+    /* No filter, transition, or blur logic here */
+  }
+
+  /* --- NEW STYLES FOR CONTENT WRAPPER (This is the element that gets blurred) --- */
+  .registration-content-wrapper {
+    /* Ensures the wrapper fills the page and scrolls correctly */
+    width: 100%;
+    /* Add transition for smooth blur effect */
+    transition: filter 0.3s ease-in-out;
+    display: flex; /* Maintain vertical layout */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Applying the blur class to the NEW inner wrapper */
+  .registration-content-wrapper.blurred-background {
+      filter: blur(5px);
+      /* Prevent user interaction with the background while the modal is open */
+      pointer-events: none; 
+  }
+  /* ----------------------------------------------------------------------------- */
+  
+  .registration-header {
+    display: flex;
+    justify-content: space-between; 
+    background-color: var(--cadbury-purple);
+    align-items: center; 
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    min-height: 60px;
+    overflow: hidden; 
+  }
+  .logo-cluster {
+    display: flex;
+    align-items: center;
+  }
+  .registration-header .logo {
+    height: 30px; 
+    object-fit: contain;
+  }
+  
+  .registration-header .hashtag-logo {
+    margin-right: 90px;
+    flex-grow: 0; 
+    height: 30px; 
+    object-fit: contain;
+    transform: scale(2.3); 
+    transform-origin: right center; 
+  }
+  
+  .menu-icon {
+    width: 30px; 
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  /* Carousel Dots and Visuals */
+  .image-carousel {
+    width: 100%;
+    text-align: center;
+    padding-top: 15px; 
+     position: relative;
+  }
+  
+  .progress-bar-image {
+    width: 220px; 
+    height: auto;
+    margin: 0 auto 5px auto; 
+  
+  }
+  
+  .celebration-visual {
+    height: 300px; 
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .main-box-image {
+    position: absolute;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 100%; 
+    object-fit: contain;
+  }
+  
+  /* Form Container Styling */
+  .registration-form-container {
+    width: 100%;
+    padding: 0 20px; 
+    box-sizing: border-box;
+    margin-top: -80px;
+    
+  }
+  
+  .register-title {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+  }
+  
+  .input-group {
+    margin-bottom: 20px; 
+  }
+  
+  .styled-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px; 
+    font-size: 16px;
+    color: #333; 
+    box-sizing: border-box;
+    background-color: white; 
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    line-height: 1.3;
+  }
+  
+  .checkbox-group input[type="radio"] {
+    /* Visually hide the default radio/checkbox */
+    appearance: none; 
+    min-width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+  }
+  
+  .checkbox-group input[type="radio"]:checked {
+    border-color: #f7d794; /* Gold border when checked */
+    background-color: white;
+  }
+  
+  .checkbox-group input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f7d794; /* Gold dot inside when checked */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .checkbox-group label {
+    cursor: pointer;
+  }
+  
+  .button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Submit Button Styling */
+  .submit-button {
+    width: 30%;
+    padding: 15px;
+    background-color: #ff9800; 
+    color:var(--cadbury-purple); 
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #e68900;
+  }

@@ -1,0 +1,111 @@
+/* OTP.css */
+
+/* Styling for the full-screen modal overlay */
+.otp-modal-overlay {
+    /* Key properties for creating an overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Must be higher than the blurred background (z-index: 999) */
+  }
+  
+  /* Styling for the central white content box */
+  .otp-modal-content {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 320px; 
+    text-align: center;
+    position: relative; /* CRUCIAL: Needed for the close button absolute position */
+  }
+
+  /* 🔑 IMPORTANT: Close Button Styling */
+  .otp-modal-content .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #191970;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+  }
+  
+  .otp-title {
+    color: #191970; /* Dark color for text inside the white box */
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+  
+  /* 4-Box Input Styling */
+  .otp-input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .otp-input-box {
+    width: 50px; 
+    height: 50px; 
+    font-size: 1.5em;
+    text-align: center;
+    color: white; 
+    background-color: #6b21a8; /* Dark purple background for the box */
+    border: none;
+    border-radius: 8px; 
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  
+  .otp-input-box:focus {
+    background-color: #5a1c8f; 
+  }
+  
+  
+  /* Resend OTP Link/Button */
+  .otp-resend {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .resend-button {
+    background: none;
+    border: none;
+    color: #ff9800; /* Orange color for the link */
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  
+  /* Submit Button Styling */
+  .otp-submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff9800; /* Orange/Gold color */
+    color: white; 
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .otp-submit-button:hover {
+    background-color: #e68900;
+  }
