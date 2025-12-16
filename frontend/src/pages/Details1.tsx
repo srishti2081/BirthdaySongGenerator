@@ -62,12 +62,16 @@ export default function Details1() {
     >
       {/* 1. Header (Navbar) */}
       <div className="registration-header">
-        <div className="logo-cluster">
-            <img src={logoImage} alt="Cadbury Celebrations Logo" className="logo" />
-            <img src={birthdaySongLogo} alt="#my birthday song" className="hashtag-logo" />
+          <div className="header-left">
+            <img src={logoImage} alt="Cadbury Celebrations" className="cadbury-logo" />
+          </div>
+          <div className="header-center">
+            <img src={birthdaySongLogo} alt="#my birthday song" className="birthday-logo" />
+          </div>
+          <div className="header-right">
+            <img src={hamburgerIcon} alt="Menu" className="menu-icon" />
+          </div>
         </div>
-        <img src={hamburgerIcon} alt="Menu" className="menu-icon" /> 
-      </div>
 
       {/* 2. Progress Indicator */}
       <div className="progress-section">
@@ -120,7 +124,7 @@ export default function Details1() {
         </div>
         
         {/* 5. Proceed Button */}
-        <div className="button-wrapper">
+        <div className="button-wrapper-two">
           <button onClick={next} className="proceed-button">
             Proceed
           </button>

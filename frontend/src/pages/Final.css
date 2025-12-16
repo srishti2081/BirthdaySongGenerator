@@ -19,13 +19,54 @@
 
 /* Header inherited from other pages */
 .registration-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px 10px; 
-    background-color: transparent;
+  width: 100%;
+  height: 64px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   background: linear-gradient(
+    #29154c 100%
+  );
+
+  position: relative;
+  z-index: 20;
+}
+  
+/* LEFT */
+.header-left {
+  display: flex;
+  align-items: center;
 }
 
+.cadbury-logo {
+  height: 30px;
+  width: auto;
+}
+
+/* CENTER */
+.header-center {
+  position: absolute;
+   left: 35%;
+    transform: scale(2); 
+}
+
+.birthday-logo {
+  height: 36px;
+  width: auto;
+}
+
+/* RIGHT */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
 /* FIX: New wrapper for Progress and Title to group them tightly */
 .progress-title-section {
     width: 100%;
@@ -43,7 +84,7 @@
 .lyrics-ready-title {
     color: white;
     /* FIX: Reduced margin to integrate with progress bar/dots */
-    font-size: 1.6em;
+    font-size: 1em;
     margin-top: 5px; 
     margin-bottom: 20px; 
     font-weight: 700;
@@ -57,7 +98,7 @@
 
 .loading-text {
     font-size: 1.1em;
-    color: #FFC35B;
+    color: #e68900;
     margin-top: 40px;
 }
 
@@ -71,7 +112,7 @@
     max-height: 400px;
     overflow-y: auto;
     text-align: left;
-    color: #333;
+    color: #29154c;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     width: 100%; 
     box-sizing: border-box; /* Crucial for padding/width calculation */
@@ -84,6 +125,23 @@
     line-height: 1.6;
     margin: 0;
 }
+
+.lyrics-box-wrapper {
+  background-color: white;
+  border-radius: 35px;
+  padding: 24px 20px;
+  color: #29154c;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.lyrics-scroll-area {
+  max-height: 320px;   
+  overflow-y: auto;
+  padding-right: 14px;  
+  scrollbar-width: thin;
+  scrollbar-color: #e68900 transparent;
+}
+
 
 /* FIX: Button Group for Single Button */
 .final-button-group {
@@ -99,20 +157,19 @@
     width: 100%; 
     font-size: 1.4em; /* Slightly larger text for the main button */
     padding: 18px 10px;
-    border-radius: 15px; 
-    font-weight: 700;
+    font-weight: bold;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 
     /* Primary Style - Gold/Yellow */
-    background-color: #FFC35B;
-    color: #333;
+    background-color: #e68900;
+    color: white;
 }
 .final-button-group .play-song-button:disabled {
     opacity: 0.8;
-    background-color: #FFC35B;
-    color: #333;
+    background-color: #e68900;
+    color: white;
     cursor: not-allowed;
 }
 

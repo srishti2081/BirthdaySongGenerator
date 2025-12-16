@@ -8,7 +8,6 @@
     min-height: 100vh; /* Match Register page height behavior */
     padding-bottom: 40px; 
     color: white; 
-    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -16,23 +15,68 @@
 
 /* Header inherited from Login/PPT style */
 .registration-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px 10px; 
-    background-color: transparent;
+  width: 100%;
+  height: 64px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(
+  180deg,
+  #29154c 100%
+);
+
+
+  position: relative;
+  z-index: 20;
+}
+  
+/* LEFT */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.cadbury-logo {
+  height: 30px;
+  width: auto;
+}
+
+/* CENTER */
+.header-center {
+  position: absolute;
+   left: 35%;
+    transform: scale(2); 
+}
+
+.birthday-logo {
+  height: 36px;
+  width: auto;
+}
+
+/* RIGHT */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
 }
 
 .progress-section {
     width: 100%;
     padding: 10px 0;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .progress-bar-image {
     width: 80%; 
-    max-width: 350px;
+    max-width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* Main Form Area */
@@ -43,20 +87,18 @@
 
 .details-title {
     color: white;
-    font-size: 1.5em;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 /* Visuals Section (Present/Hat/Balloon) */
 .visuals-section {
-    padding: 15px 0;
+    padding: 5px 0;
 }
 
 .visual-present {
-    width: 300px; 
+    width: 250px; 
     height: auto;
-    margin-bottom: 20px;
 }
 
 /* Input/Select Fields */
@@ -69,17 +111,15 @@
     font-size: 1.1em;
     color: white; 
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: bold;
     text-align: center;
     display: block; 
 }
 
 /* Custom Select/Dropdown Wrapper */
 .custom-select-wrapper {
-    position: relative;
-    /* FIX: Ensured fields are full width of the container padding */
-    max-width: 100%; 
-    margin: 0 auto;
+  position: relative;
+  width: 100%;
 }
 
 /* Use white background for inputs/selects */
@@ -87,37 +127,65 @@
     width: 100%; 
     padding: 16px 20px;
     border: none;
-    border-radius: 15px; 
+    border-radius: 45px; 
     font-size: 1.1em;
     box-sizing: border-box;
     background-color: white;
-    color: #333; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #29154c; 
 }
 .styled-select {
-    -webkit-appearance: none; 
-    -moz-appearance: none;    
-    appearance: none;         
+  width: 100%;
+  padding: 16px 48px 16px 20px; /* space for arrow */
+  border: none;
+  border-radius: 45px;
+  font-size: 1.1em;
+  background-color: white;
+  color: #29154c;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 }
 
-
-/* Proceed Button */
-.button-wrapper {
-    margin-top: 40px;
-    /* FIX: Ensured button is full width of the container padding */
-    max-width: 100%; 
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0; /* Padding is already on .details-form-container */
+/* Custom Arrow */
+.custom-select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid #29154c; /* arrow color */
+  pointer-events: none;
 }
-
+/* Proceed Button Wrapper – ONLY FOR ALIGNMENT */
+.button-wrapper-two {
+  margin-top: 20px;
+ width: 100vw; 
+  margin-left: calc(-50vw + 50%);
+  display: flex;
+  justify-content: center;
+}
 .proceed-button {
-    width: 100%;
-    padding: 18px; 
-    background-color: #FFC35B;
-    color: #333;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.4em;
-    font-weight: 800;
+  all: unset; /* 🔥 removes ALL inherited styles */
+  display: inline-block;
+  width: 160px;
+  text-align: center;
+  padding: 15px 0 !important;
+  background-color: #faab35 !important;
+  color: #29154c !important;
+  border-radius: 25px ;
+  font-size: 1em !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
+
+.proceed-button:hover {
+  background-color: #e68900 !important;
+  transform: scale(0.97);
+}
+

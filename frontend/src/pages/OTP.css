@@ -8,7 +8,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    
     background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
     display: flex;
     justify-content: center;
@@ -19,11 +18,11 @@
   /* Styling for the central white content box */
   .otp-modal-content {
     background-color: white;
-    padding: 30px 20px;
+    padding: 20px 20px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 320px; 
+    width:90%;
+    max-width: 280px; 
     text-align: center;
     position: relative; /* CRUCIAL: Needed for the close button absolute position */
   }
@@ -44,17 +43,16 @@
   }
   
   .otp-title {
-    color: #191970; /* Dark color for text inside the white box */
+    color: #29154c; /* Dark color for text inside the white box */
     font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 25px;
   }
   
   /* 4-Box Input Styling */
   .otp-input-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
     margin-bottom: 15px;
   }
   
@@ -64,7 +62,7 @@
     font-size: 1.5em;
     text-align: center;
     color: white; 
-    background-color: #6b21a8; /* Dark purple background for the box */
+    background-color:#29154c; /* Dark purple background for the box */
     border: none;
     border-radius: 8px; 
     outline: none;
@@ -72,32 +70,33 @@
   }
   
   .otp-input-box:focus {
-    background-color: #5a1c8f; 
+    background-color: #29154c; 
   }
-  
   
   /* Resend OTP Link/Button */
   .otp-resend {
     text-align: right;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+   
   }
   
   .resend-button {
     background: none;
     border: none;
-    color: #ff9800; /* Orange color for the link */
+    color: #29154c; /* Orange color for the link */
     font-size: 0.9em;
-    font-weight: 500;
+    font-weight: bold;
     cursor: pointer;
+    text-decoration: underline;
   }
   
   
   /* Submit Button Styling */
   .otp-submit-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #ff9800; /* Orange/Gold color */
-    color: white; 
+    width: 60%;
+    padding: 15px;
+    background-color: #faab35; /* Orange/Gold color */
+    color: #29154c; 
     font-size: 1.1em;
     font-weight: bold;
     border: none;

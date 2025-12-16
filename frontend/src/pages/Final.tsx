@@ -5,8 +5,9 @@ import api from "../services/api";
 import "./Final.css";
 
 // Placeholder images for context
-import finalHeaderImage from '../assets/Cadbury Logo.png'; 
-import finalProgressImage from '../assets/progress bar5.png'; 
+import logoImage from "../assets/Cadbury Logo.png";
+import birthdaySongLogo from "../assets/2d logo.png";
+import finalProgressImage from '../assets/progress bar4.png'; 
 import hamburgerIcon from '../assets/Hamburger.png';
 
 // --- MOCK LYRICS TEMPLATE (Hardcoded to simulate successful API response) ---
@@ -139,11 +140,16 @@ export default function Final() {
   
   return (
     <div className="final-screen">
-        <div className="registration-header">
-            <div className="logo-cluster">
-                <img src={finalHeaderImage} alt="Cadbury Celebrations Logo" className="logo" />
-            </div>
-            <img src={hamburgerIcon} alt="Menu" className="menu-icon" /> 
+       <div className="registration-header">
+          <div className="header-left">
+            <img src={logoImage} alt="Cadbury Celebrations" className="cadbury-logo" />
+          </div>
+          <div className="header-center">
+            <img src={birthdaySongLogo} alt="#my birthday song" className="birthday-logo" />
+          </div>
+          <div className="header-right">
+            <img src={hamburgerIcon} alt="Menu" className="menu-icon" />
+          </div>
         </div>
 
         {/* FIX: Combined Progress section and Title as requested */}
@@ -159,12 +165,13 @@ export default function Final() {
           ) : (
             <>
               {/* --- Lyrics Box --- */}
-              <div className="lyrics-box-wrapper">
-                  <pre className="lyrics-text">
-                      {lyrics || "No lyrics available."}
-                  </pre>
-              </div>
+             <div className="lyrics-box-wrapper">
+  <div className="lyrics-scroll-area">
+    <pre className="lyrics-text">{lyrics || "No lyrics available."}</pre>
+  </div>
+</div>
 
+ 
               {/* --- Button Group (Now only one button) --- */}
               <div className="final-button-group single-button-group">
                 

@@ -117,12 +117,16 @@ export default function Details2() {
       }}
     >
         {/* --- Header Section --- */}
-        <div className="registration-header">
-            <div className="logo-cluster">
-                <img src={logoImage} alt="Cadbury Celebrations Logo" className="logo" />
-                <img src={birthdaySongLogo} alt="#my birthday song" className="hashtag-logo" />
-            </div>
-            <img src={hamburgerIcon} alt="Menu" className="menu-icon" /> 
+         <div className="registration-header">
+          <div className="header-left">
+            <img src={logoImage} alt="Cadbury Celebrations" className="cadbury-logo" />
+          </div>
+          <div className="header-center">
+            <img src={birthdaySongLogo} alt="#my birthday song" className="birthday-logo" />
+          </div>
+          <div className="header-right">
+            <img src={hamburgerIcon} alt="Menu" className="menu-icon" />
+          </div>
         </div>
 
         {/* --- Progress Section --- */}
@@ -157,7 +161,7 @@ export default function Details2() {
             </div>
             
             {/* --- Proceed Button --- */}
-            <div className="button-wrapper">
+            <div className="button-wrapper-three">
                 <button onClick={next} className="proceed-button">
                     Proceed
                 </button>

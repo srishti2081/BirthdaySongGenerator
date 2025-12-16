@@ -1,145 +1,191 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css"; 
-import OTP from "./OTP"; 
+import "./Register.css";
+import OTP from "./OTP";
 
-// --- IMPORT YOUR ASSETS HERE ---
-import logoImage from '../assets/Cadbury Logo.png'; 
-import birthdaySongLogo from '../assets/2d logo.png'; 
-import celebrationBoxImage from '../assets/Celebrations(Bg).png'; 
-import backgroundImage from '../assets/BG.jpg'; 
-import hamburgerIcon from '../assets/Hamburger.png'; 
-import progressBarImage from '../assets/progress bar.png';
+import logoImage from "../assets/Cadbury Logo.png";
+import birthdaySongLogo from "../assets/2d logo.png";
+import celebrationBoxImage from "../assets/Celebrations(Bg).png";
+import backgroundImage from "../assets/BG.jpg";
+import hamburgerIcon from "../assets/Hamburger.png";
+import progressBarImage from "../assets/progress bar.png";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [receivePromo, setReceivePromo] = useState(false);
-  const [showOtpModal, setShowOtpModal] = useState(false); 
-  // FIX: State to hold the generated userId
-  const [currentUserId, setCurrentUserId] = useState(""); 
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState("");
 
   const navigate = useNavigate();
+
+  const phoneRegex = /^[6-9]\d{9}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const toggleTerms = () => setAcceptTerms(!acceptTerms);
   const togglePromo = () => setReceivePromo(!receivePromo);
 
-  const handleRegister = () => { 
-    if (!name || !phone || !email) {
-      return alert("Please fill in Name, Phone, and Email.");
+  const handleRegister = () => {
+    let isValid = true;
+
+    setPhoneError("");
+    setEmailError("");
+
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Please enter a valid 10-digit mobile number");
+      isValid = false;
     }
+
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
+      isValid = false;
+    }
+
+    if (!name.trim()) {
+      alert("Please enter your full name");
+      isValid = false;
+    }
+
     if (!acceptTerms) {
-      return alert("You must accept the Terms & Conditions.");
+      alert("You must accept the Terms & Conditions");
+      isValid = false;
     }
-    
-    // FIX: Generate a mock userId immediately
+
+    if (!isValid) return;
+
     const mockId = `user_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     setCurrentUserId(mockId);
-    
-    // Validation successful, open modal immediately
-    setShowOtpModal(true); 
+    setShowOtpModal(true);
   };
 
-  // FIX: Define the success handler to pass the state to Details1
   const handleOtpSuccess = () => {
-      navigate("/details1", {
-          state: { 
-              userId: currentUserId, // CRUCIAL: Pass the ID forward
-              name: name,
-              phone: phone,
-              email: email,
-          },
-      });
+    navigate("/details1", {
+      state: {
+        userId: currentUserId,
+        name,
+        phone,
+        email,
+      },
+    });
   };
 
-  const wrapperClass = `registration-content-wrapper ${showOtpModal ? 'blurred-background' : ''}`;
+  const wrapperClass = `registration-content-wrapper ${
+    showOtpModal ? "blurred-background" : ""
+  }`;
 
   return (
-    <div 
-        className="registration-page" 
-        style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-        }}
+    <div
+      className="registration-page"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
     >
       <div className={wrapperClass}>
-        
+        {/* HEADER */}
         <div className="registration-header">
-          <img src={logoImage} alt="Cadbury Celebrations Logo" className="logo" />
-          <img src={birthdaySongLogo} alt="#my birthday song" className="hashtag-logo" />
-          <img src={hamburgerIcon} alt="Menu" className="menu-icon" /> 
+          <div className="header-left">
+            <img src={logoImage} alt="Cadbury Celebrations" className="cadbury-logo" />
+          </div>
+          <div className="header-center">
+            <img src={birthdaySongLogo} alt="#my birthday song" className="birthday-logo" />
+          </div>
+          <div className="header-right">
+            <img src={hamburgerIcon} alt="Menu" className="menu-icon" />
+          </div>
         </div>
 
+        {/* CONTENT */}
         <div className="image-carousel">
-          <img src={progressBarImage} alt="Progress Indicator" className="progress-bar-image" />
+          <img src={progressBarImage} alt="Progress" className="progress-bar-image" />
           <div className="celebration-visual">
-            <img src={celebrationBoxImage} alt="Cadbury Celebrations Box" className="main-box-image" />
+            <img src={celebrationBoxImage} alt="Celebrations" className="main-box-image" />
           </div>
         </div>
 
         <div className="registration-form-container">
           <h3 className="register-title">Register to create</h3>
 
+          {/* PHONE */}
           <div className="input-group">
-            <input className="styled-input" type="tel" placeholder="Phone Number"
-              value={phone} onChange={(e) => setPhone(e.target.value)} />
-          </div>
-          <div className="input-group">
-            <input className="styled-input" type="text" placeholder="Full Name"
-              value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <div className="input-group">
-            <input className="styled-input" type="email" placeholder="Email ID"
-              value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input
+              className="styled-input"
+              type="tel"
+              placeholder="Phone Number"
+              value={phone}
+              maxLength={10}
+              onChange={(e) => {
+                setPhone(e.target.value.replace(/\D/g, ""));
+                setPhoneError("");
+              }}
+            />
+            {phoneError && <p className="error-text">{phoneError}</p>}
           </div>
 
-          {/* --- RADIO BUTTONS IMPLEMENTATION --- */}
-          
-          <div className="checkbox-group" onClick={toggleTerms} style={{cursor: "pointer"}}>
+          {/* NAME */}
+          <div className="input-group">
             <input
-              type="radio"
-              id="acceptTerms"
-              checked={acceptTerms}
-              readOnly
-              style={{ marginRight: "10px", accentColor: "#d4af37" }} 
+              className="styled-input"
+              type="text"
+              placeholder="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            <label htmlFor="acceptTerms" style={{cursor: "pointer"}}>
-              I accept <strong>Terms & Conditions</strong> and <strong>Privacy Policy</strong> of Mondelez (Cadbury)
+          </div>
+
+          {/* EMAIL */}
+          <div className="input-group">
+            <input
+              className="styled-input"
+              type="email"
+              placeholder="Email ID"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailError("");
+              }}
+            />
+            {emailError && <p className="error-text">{emailError}</p>}
+          </div>
+
+          {/* CHECKBOXES */}
+          <div className="checkbox-group" onClick={toggleTerms}>
+            <input type="radio" checked={acceptTerms} readOnly />
+            <label>
+              I accept <strong>Terms & Conditions</strong> and{" "}
+              <strong>Privacy Policy</strong>
             </label>
           </div>
 
-          <div className="checkbox-group" onClick={togglePromo} style={{cursor: "pointer"}}>
-            <input
-              type="radio"
-              id="receivePromo"
-              checked={receivePromo}
-              readOnly
-              style={{ marginRight: "10px", accentColor: "#d4af37" }}
-            />
-            <label htmlFor="receivePromo" style={{cursor: "pointer"}}>
-              I would like to receive promotional communication from Mondelez (Cadbury) about its products and offers.
+          <div className="checkbox-group" onClick={togglePromo}>
+            <input type="radio" checked={receivePromo} readOnly />
+            <label>
+              I would like to receive promotional communication from Mondelez
+              (Cadbury).
             </label>
           </div>
-          
-          <div className="button-wrapper">
+
+          <div className="button-wrapper-one">
             <button className="submit-button" onClick={handleRegister}>
-                Submit
+              Submit
             </button>
           </div>
         </div>
-      
       </div>
 
-      {/* --- MODAL RENDERING: REMAINS OUTSIDE THE BLURRED WRAPPER --- */}
       {showOtpModal && (
-        <OTP 
+        <OTP
           phone={phone}
           onClose={() => setShowOtpModal(false)}
-          onSuccess={handleOtpSuccess} // FIX: Use the handler that passes state
+          onSuccess={handleOtpSuccess}
         />
       )}
     </div>
