@@ -5,19 +5,48 @@
   box-sizing: border-box;
 }
 
-/* Body */
+/* ================================================= */
+/* GLOBAL LAYOUT FIX: ELIMINATE WHITE MOBILE BORDER */
+/* ================================================= */
+
+/* Body & Root container are the full viewport */
 body, #root {
+  /* 1. FORCE ELIMINATION OF DEFAULT BROWSER MARGIN/PADDING */
+  margin: 0 !important; 
+  padding: 0 !important;
+  
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  
+  /* 2. CRUCIAL: PREVENT HORIZONTAL SCROLL AND HIDE WHITE BACKGROUND */
+  overflow-x: hidden !important; 
+  
+  /* 3. Set the background of the ENTIRE PAGE to your app's intended background color */
+  /* This ensures that even if a tiny overflow occurs, the revealed color is not white. 
+     (Using a generic dark color here, replace with your specific purple if known) */
+  background-color: #000000; 
+
+  /* Keep: Your layout properties */
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
+  /* Removed align-items: center for better handling of tall mobile content */
+  
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Mobile Frame */
+/* Ensure the root element doesn't expand past the body */
+#root {
+  /* CRUCIAL: Also prevent overflow on the root element */
+  overflow-x: hidden;
+  /* Reset background-color back to the desired app background if different from body */
+  background-color: #ffffff; /* Keeping your original setting */
+}
+
+/* ================================================= */
+
+
+/* Mobile Frame (Keep this section as it defines your simulated frame) */
 .mobile-frame {
   position: relative;
   width: 100%;
@@ -41,11 +70,12 @@ body, #root {
 /* Content inside mobile frame */
 .mobile-content {
   position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
+  padding: 20px;
   text-align: center;
 }
 
