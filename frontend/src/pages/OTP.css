@@ -1,21 +1,17 @@
-/* OTP.css */
 
-/* Styling for the full-screen modal overlay */
 .otp-modal-overlay {
-    /* Key properties for creating an overlay */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    background-color: rgba(0, 0, 0, 0.6); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Must be higher than the blurred background (z-index: 999) */
+    z-index: 1000; 
   }
   
-  /* Styling for the central white content box */
   .otp-modal-content {
     background-color: white;
     padding: 20px 20px;
@@ -24,10 +20,9 @@
     width:90%;
     max-width: 280px; 
     text-align: center;
-    position: relative; /* CRUCIAL: Needed for the close button absolute position */
+    position: relative; 
   }
 
-  /* 🔑 IMPORTANT: Close Button Styling */
   .otp-modal-content .close-button {
     position: absolute;
     top: 15px;
@@ -43,12 +38,11 @@
   }
   
   .otp-title {
-    color: #29154c; /* Dark color for text inside the white box */
+    color: #29154c; 
     font-size: 1.5em;
     font-weight: bold;
   }
-  
-  /* 4-Box Input Styling */
+ 
   .otp-input-container {
     display: flex;
     justify-content: space-between;
@@ -62,7 +56,7 @@
     font-size: 1.5em;
     text-align: center;
     color: white; 
-    background-color:#29154c; /* Dark purple background for the box */
+    background-color:#29154c; 
     border: none;
     border-radius: 8px; 
     outline: none;
@@ -73,7 +67,6 @@
     background-color: #29154c; 
   }
   
-  /* Resend OTP Link/Button */
   .otp-resend {
     text-align: right;
     margin-bottom: 15px;
@@ -83,19 +76,17 @@
   .resend-button {
     background: none;
     border: none;
-    color: #29154c; /* Orange color for the link */
+    color: #29154c; 
     font-size: 0.9em;
     font-weight: bold;
     cursor: pointer;
     text-decoration: underline;
   }
-  
-  
-  /* Submit Button Styling */
+
   .otp-submit-button {
     width: 60%;
     padding: 15px;
-    background-color: #faab35; /* Orange/Gold color */
+    background-color: #faab35; 
     color: #29154c; 
     font-size: 1.1em;
     font-weight: bold;

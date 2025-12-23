@@ -1,18 +1,17 @@
-/* frontend/src/pages/Details1.css (Updated for full consistency) */
 
 .details-page {
-    /* FIX: Standardizing dimensions to match Register page */
+    
     max-width: 390px; 
     margin: 0 auto; 
     width: 100%;
-    min-height: 100vh; /* Match Register page height behavior */
+    min-height: 100vh; 
     color: white; 
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* Header inherited from Login/PPT style */
+
 .registration-header {
   width: 100%;
   height: 64px;
@@ -80,7 +79,7 @@
 
 /* Main Form Area */
 .details-form-container {
-    padding: 0 25px; /* Defines the internal margin for inputs/selects */
+    padding: 0 25px; 
     text-align: center;
 }
 
@@ -90,9 +89,9 @@
     font-weight: bold;
 }
 
-/* Visuals Section (Present/Hat/Balloon) */
+
 .visuals-section {
-  position: relative; /* 🔥 KEY */
+  position: relative;
   padding: 5px 0 5px;
   display: flex;
   justify-content: center;
@@ -118,7 +117,7 @@
   height: auto;
 }
 
-/* Input/Select Fields */
+
 .input-field-group {
     margin-bottom: 25px;
     text-align: center;
@@ -133,13 +132,12 @@
     display: block; 
 }
 
-/* Custom Select/Dropdown Wrapper */
 .custom-select-wrapper {
   position: relative;
   width: 100%;
 }
 
-/* Use white background for inputs/selects */
+
 .styled-input, .styled-select {
     width: 100%; 
     padding: 16px 20px;
@@ -152,7 +150,7 @@
 }
 .styled-select {
   width: 100%;
-  padding: 16px 48px 16px 20px; /* space for arrow */
+  padding: 16px 48px 16px 20px; 
   border: none;
   border-radius: 45px;
   font-size: 1.1em;
@@ -165,7 +163,7 @@
   cursor: pointer;
 }
 
-/* Custom Arrow */
+
 .custom-select-wrapper::after {
   content: "";
   position: absolute;
@@ -176,10 +174,10 @@
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 7px solid #29154c; /* arrow color */
+  border-top: 7px solid #29154c; 
   pointer-events: none;
 }
-/* Proceed Button Wrapper – ONLY FOR ALIGNMENT */
+
 .button-wrapper-two {
   margin-top: 8px;
  width: 100vw; 
@@ -188,7 +186,7 @@
   justify-content: center;
 }
 .proceed-button {
-  all: unset; /* 🔥 removes ALL inherited styles */
+  all: unset; 
   display: inline-block;
   width: 160px;
   text-align: center;
@@ -207,7 +205,7 @@
 }
 .floating-music-note1 {
   position: absolute;
-  left: calc(50% - 150px); /* relative to button */
+  left: calc(50% - 150px); 
   width: 36px;
   height: auto;
 }

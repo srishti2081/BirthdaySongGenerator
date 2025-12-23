@@ -1,31 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/BG.jpg";
 import logo from "../assets/Celebrations(Bg) - hashtag.png";
-import './Login.css'; // Ensure you import a dedicated CSS file
+import './Login.css'; 
 
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    // FIX: Replaced .mobile-frame with a standard page wrapper class.
     <div 
-        className="login-page-container" // New standardized wrapper
+        className="login-page-container" 
         style={{ 
             backgroundImage: `url(${bg})`, 
             backgroundSize: 'cover', 
             backgroundPosition: 'center',
-            minHeight: '100vh', // Ensures the container fills the screen vertically
+            minHeight: '100vh', 
             width: '100%',
-            maxWidth: '390px', // Explicitly setting the max-width here for clarity
+            maxWidth: '390px', 
             margin: '0 auto',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center', // Center content vertically
+            justifyContent: 'center', 
             alignItems: 'center',
             padding: '20px',
         }}
     >
-      {/* FIX: Removed .mobile-content wrapper as it was part of the old structure */}
       <div className="login-content"> 
         <img style={{
          width: '90%',       

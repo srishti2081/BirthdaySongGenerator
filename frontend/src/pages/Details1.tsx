@@ -16,7 +16,6 @@ import musicNoteImage from '../assets/Purple tone.png';
 
 
 export default function Details1() {
-  // FIX 2: Receive previous state, including userId
   const { state } = useLocation();
   const { userId } = state || {} as any; 
 
@@ -29,15 +28,13 @@ export default function Details1() {
   const next = () => {
     if (!receiverName || !gender || !age) return alert("All fields required!");
     
-    // CRUCIAL CHECK: Ensure we have the userId before proceeding
     if (!userId) {
         return alert("Registration data missing. Please go back to register.");
     }
 
-    // FIX 3: Pass ALL required state data to Details2, especially userId
     navigate("/details2", {
       state: { 
-        userId: userId, // CRUCIAL: Pass the ID forward
+        userId: userId, 
         receiverName: receiverName, 
         gender: gender, 
         age: age,

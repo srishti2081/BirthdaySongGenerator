@@ -28,7 +28,7 @@ import edmIcon from '../assets/EDM.png';
 import maleAvatar from '../assets/Male.png';
 import femaleAvatar from '../assets/Female.png';
 
-// --- Type Definition ---
+
 interface SelectorItem {
   value: string;
   label: string;
@@ -60,7 +60,7 @@ const SINGER_VOICES: SelectorItem[] = [
 export default function Details2() { 
   const { state } = useLocation();
   
-  // Data is received correctly here from Details1.tsx
+  
   const { userId, receiverName, gender, age } = state || {} as any; 
 
   const [mood, setMood] = useState("");
@@ -70,23 +70,23 @@ export default function Details2() {
   const navigate = useNavigate();
 
   const next = () => {
-    // 1. Input validation
+  
     if (!mood || !genre || !singerVoice) {
       return alert("Please select a mood, a genre, and a singer's voice.");
     }
     
-    // 2. Validation check (should pass now)
+   
     if (!userId || !receiverName || !gender) {
         return alert("Missing previous registration or details data. Please restart the flow.");
     }
 
-    // 3. Navigate to Final page using the corrected route path
+   
     navigate("/generate-song", { 
       state: { 
-        userId: userId, // CRUCIAL: Passed to backend
+        userId: userId, 
         receiverName: receiverName, 
         gender: gender, 
-        genre: genre, // Passed as the primary AI parameter
+        genre: genre, 
       }, 
     });
   };

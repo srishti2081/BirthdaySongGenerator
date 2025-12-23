@@ -177,19 +177,18 @@ export default function Register() {
           </div>
 
           <div className="submit-section">
-  {/* Glitter */}
+ 
   <img
     src={glitterImage}
     alt=""
     className="decor-glitter"
   />
 
-  {/* Submit button */}
+ 
   <button className="submit-button" onClick={handleRegister}>
     Submit
   </button>
 
-  {/* Music note */}
   <img
     src={musicNoteImage}
     alt=""

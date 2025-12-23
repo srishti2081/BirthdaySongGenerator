@@ -1,18 +1,16 @@
 import express from 'express';
-// import { v4 as uuidv4 } from 'uuid'; // <-- DELETE THIS LINE
-import User from '../models/User.ts'; // Ensure this is now .ts
+import User from '../models/User.ts'; 
 
 const router = express.Router();
 
-// Mock Register: Saves user and returns a unique userId
+
 router.post('/register', async (req, res) => {
     const { name, email, phone } = req.body;
     
-    // 💥 FIX: Dynamic import of uuid
+  
     const { v4: uuidv4 } = await import('uuid'); 
 
     try {
-        // Use phone as the unique identifier for a simple mock
         const existingUser = await User.findOne({ phone });
         
         if (existingUser) {
@@ -23,7 +21,7 @@ router.post('/register', async (req, res) => {
             name,
             email,
             phone,
-            userId: uuidv4() // This line now uses the dynamically imported function
+            userId: uuidv4()
         });
         await newUser.save();
         res.json({ userId: newUser.userId });

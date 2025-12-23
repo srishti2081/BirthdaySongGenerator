@@ -1,122 +1,73 @@
-import express from 'express';
-import axios from 'axios';
-import User from '../models/User.ts';
+import express from "express";
+import axios from "axios";
+import User from "../models/User.ts";
 
 const router = express.Router();
 
-// Define Gemini environment variables
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash"; 
+router.post("/lyrics", async (req, res) => {
+  const { userId, receiverName, gender, genre } = req.body;
 
-// Keep ElevenLabs variables
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const ELEVENLABS_VOICE_ID = process.env.ELEVENLABS_VOICE_ID;
-
-
-// --- Helper: Prompt Construction ---
-const constructPrompt = (name: string, gender: 'male' | 'female', genre: string): string => {
-    const pronoun = gender === 'male' ? 'him' : 'her';
-    const possessive = gender === 'male' ? 'his' : 'her';
-
-    return `
-        Write a short, catchy birthday song lyrics (max 8 lines) in the style of a ${genre} song for a person named ${name}. 
-        The song should be celebratory and suitable for a commercial jingle, referencing ${possessive} birthday. 
-        Do not include any introductions, explanations, or wrappers like "Chorus:". 
-        Only return the raw lyrics.
-    `.trim();
-};
-
-
-// --- ROUTE: Generate Lyrics (POST /api/ai/lyrics/generate) ---
-router.post('/lyrics/generate', async (req, res) => {
-  const { userId, receiverName, gender, genre } = req.body; 
-  
-  if (!GEMINI_API_KEY) {
-      console.error("CONFIGURATION ERROR: Gemini API key is missing in .env");
-      return res.status(500).json({ message: "Server configuration error: AI service key missing." });
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("❌ OPENAI_API_KEY is missing");
+    return res.status(500).json({ error: "OPENAI_API_KEY missing" });
   }
 
-  try {
-    const prompt = constructPrompt(receiverName, gender as 'male' | 'female', genre);
-    const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+  if (!receiverName || !genre || !gender) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
 
-    const geminiResponse = await axios.post(
-      geminiEndpoint, 
+  const subjectPronoun = gender === "Female" ? "her" : "him";
+  const possessivePronoun = gender === "Female" ? "her" : "his";
+
+  const prompt = `
+Wish a happy birthday to ${receiverName}.
+
+Ensure that "Happy birthday" is mentioned at least twice and rhymes.
+Use simple, short, easy-to-pronounce words.
+
+Write 16 lines of ${genre} lyrics that I can dedicate to ${subjectPronoun} for ${possessivePronoun} birthday.
+Each line must have at most 8 words or 40 characters.
+
+Lyrics must be completely original.
+Avoid proper nouns except "${receiverName}".
+Avoid offensive, political, religious, or abusive content.
+  `.trim();
+
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
       {
-        contents: [
-            { role: "user", parts: [{ text: prompt }] }
-        ],
-        config: {
-          temperature: 0.7,
-          maxOutputTokens: 100,
-        }
+        model: "gpt-4o-mini",
+        temperature: 0.9,
+        messages: [
+          { role: "system", content: "You are a professional birthday song lyricist." },
+          { role: "user", content: prompt }
+        ]
       },
       {
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          "Content-Type": "application/json"
+        }
       }
     );
-    
-    const generatedLyrics = geminiResponse.data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() 
-                            ?? "Happy Birthday to You! (Fallback from Gemini)"; 
-    
-    await User.findOneAndUpdate({ userId }, { lyrics: generatedLyrics }, { new: true });
-    res.json({ lyrics: generatedLyrics });
 
-  } catch (error) {
-    const status = axios.isAxiosError(error) ? error.response?.status : 'N/A';
-    console.error(`Gemini API Error: Status ${status}. Full Error:`, error);
-    
-    let message = "Error connecting to AI service.";
-    if (status === 401 || status === 403) {
-        message = "Gemini key is invalid or unauthorized (403). Billing is required.";
-    } 
+    const lyrics = response.data.choices[0].message.content.trim();
 
-    res.status(500).json({ 
-        lyrics: "It's the greatest day! A technical error occurred.", 
-        message: message 
+    if (userId) {
+      await User.updateOne({ userId }, { lyrics });
+    }
+
+    res.json({ lyrics });
+
+  } catch (error: any) {
+    console.error("STATUS:", error.response?.status);
+    console.error("OPENAI BODY:", error.response?.data);
+
+    res.status(500).json({
+      error: "AI generation failed"
     });
   }
 });
-
-// --- ROUTE: Text-to-Speech (POST /api/ai/tts) ---
-router.post('/tts', async (req, res) => {
-    if (!req.body.text) {
-      return res.status(400).json({ message: "Missing text for TTS." });
-    }
-  
-    if (!ELEVENLABS_API_KEY || !ELEVENLABS_VOICE_ID) {
-      console.error("CONFIGURATION ERROR: ElevenLabs key or voice ID is missing in .env");
-      return res.status(500).json({ message: "TTS API keys not configured in backend." });
-    }
-  
-    try {
-      const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID!}/stream`;
-      
-      const ttsResponse = await axios.post(
-        elevenLabsUrl,
-        {
-          text: req.body.text,
-          model_id: "eleven_monolingual_v1", 
-          voice_settings: { stability: 0.5, similarity_boost: 0.5 },
-        },
-        {
-          headers: {
-            "Accept": "audio/mpeg",
-            "xi-api-key": ELEVENLABS_API_KEY!, 
-            "Content-Type": "application/json",
-          },
-          responseType: 'stream', 
-        }
-      );
-  
-      res.setHeader('Content-Type', 'audio/mpeg');
-      ttsResponse.data.pipe(res);
-  
-    } catch (error) {
-      console.error("ElevenLabs TTS Error:", error);
-      res.status(500).json({ message: "TTS service failed. Check API key and voice ID." });
-    }
-  });
-
 
 export default router;

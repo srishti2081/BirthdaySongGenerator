@@ -1,18 +1,10 @@
-/* frontend/src/pages/Login.css */
-
-/* .login-page-container styles are mainly handled inline in Login.tsx
-   to apply the background image and dimensions consistently with the 390px frame. */
-
-   .login-content {
-    /* Styles that were previously in .mobile-content */
+ .login-content {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically within the wrapper */
+    justify-content: center; 
     align-items: center;
     text-align: center;
     width: 100%;
-    
-    /* Ensure text colors match the dark background */
     color: white; 
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -37,7 +29,7 @@
   border: none;
   border-radius: 50px;
   background-color: #ffffff;
-  color: #6b21a8; /* Use your application's purple color */
+  color: #6b21a8; 
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s;

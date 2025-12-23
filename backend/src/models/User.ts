@@ -25,3 +25,7 @@ const UserSchema: Schema = new Schema({
 });
 
 export default mongoose.model<IUser>('User', UserSchema);
+
+export function findOne(arg0: { phone: any; }) {
+    throw new Error("Function not implemented.");
+}
