@@ -185,8 +185,38 @@
   .checkbox-group label {
     cursor: pointer;
   }
-  
-  .button-wrapper {
+
+.registration-form-container {
+  position: relative; 
+}
+
+.submit-section {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.decor-glitter {
+  position: absolute;
+  left: -10px;
+  bottom: 5px;
+  width: 55px;
+  pointer-events: none;
+}
+
+.decor-music-note {
+  position: absolute;
+  right: 10px;
+  bottom: 28px;
+  width: 25px;
+  pointer-events: none;
+}
+ 
+  .button-wrapper
+   {
     width: 100vw; 
   margin-left: calc(-50vw + 50%);
     display: flex;

@@ -10,6 +10,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+   overflow-x: hidden;
 }
 
  .registration-header {
@@ -79,11 +80,41 @@
        margin: 0 auto 5px auto;
      }
      
-     .visual-headphones { 
-        width: 220px;
-         height: auto;
-          margin-bottom: 20px;
-         }
+   .visuals2-section {
+  position: relative;        
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  overflow: visible;
+}
+
+.visual-headphones {
+  width: 250px;
+  height: auto;
+  z-index: 2;
+}
+
+.floating-balloon2 {
+  position: absolute;
+ right: 20px;
+  top: 40%;
+  transform: translate(40%, -50%);
+  width: 48px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✨ Glitter (left) */
+.floating-music-note2  {
+  position: absolute;
+  left: 10px;
+  top: 85%;
+  transform: translate(-40%, -50%);
+  width: 54px;
+  z-index: 1;
+  pointer-events: none;
+}
 
 /* ===== SELECTION CARD ===== */
 .selection-card {
@@ -154,30 +185,39 @@
 
 /* ===== PROCEED BUTTON ===== */
 .button-wrapper-three {
-  margin-top: 20px;
-  width: 100vw; 
-  margin-left: calc(-50vw + 50%);
+  margin-top: 16px;
+  width: 100%;
   display: flex;
   justify-content: center;
+  position: relative; /* 🔑 anchor for music note */
 }
+
+
 .proceed-button {
-  all: unset; /* 🔥 removes ALL inherited styles */
-  display: inline-block;
+  all: unset;
   width: 160px;
-  text-align: center;
-  padding: 15px 0 !important;
-  background-color: #faab35 !important;
-  color: #29154c !important;
-  border-radius: 25px ;
-  font-size: 1em !important;
+  padding: 14px 0;
+  background-color: #faab35;
+  color: #29154c;
+  border-radius: 22px; /* 🔁 adjust easily */
+  font-size: 1em;
   font-weight: bold;
+  text-align: center;
   cursor: pointer;
-   justify-content: center;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  z-index: 2;
 }
+
 
 .proceed-button:hover {
   background-color: #e68900 !important;
   transform: scale(0.97);
 }
-
+.floating-glitter2{
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  transform: translate(140%, 45%);
+  width: 42px;
+  pointer-events: none;
+  z-index: 1;
+}

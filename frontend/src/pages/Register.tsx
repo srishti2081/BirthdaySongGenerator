@@ -9,6 +9,9 @@ import celebrationBoxImage from "../assets/Celebrations(Bg).png";
 import backgroundImage from "../assets/BG.jpg";
 import hamburgerIcon from "../assets/Hamburger.png";
 import progressBarImage from "../assets/progress bar.png";
+import musicNoteImage from "../assets/Yellow tone.png";
+import glitterImage from "../assets/Asset 1.png";
+
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -173,11 +176,27 @@ export default function Register() {
             </label>
           </div>
 
-          <div className="button-wrapper-one">
-            <button className="submit-button" onClick={handleRegister}>
-              Submit
-            </button>
-          </div>
+          <div className="submit-section">
+  {/* Glitter */}
+  <img
+    src={glitterImage}
+    alt=""
+    className="decor-glitter"
+  />
+
+  {/* Submit button */}
+  <button className="submit-button" onClick={handleRegister}>
+    Submit
+  </button>
+
+  {/* Music note */}
+  <img
+    src={musicNoteImage}
+    alt=""
+    className="decor-music-note"
+  />
+</div>
+
         </div>
       </div>
 
@@ -188,6 +207,8 @@ export default function Register() {
           onSuccess={handleOtpSuccess}
         />
       )}
+      
+
     </div>
   );
 }

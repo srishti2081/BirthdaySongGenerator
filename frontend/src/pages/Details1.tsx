@@ -10,6 +10,10 @@ import backgroundImage from '../assets/BG.jpg';
 import hamburgerIcon from '../assets/Hamburger.png'; 
 import progressBarImage from '../assets/progress bar1.png'; 
 import presentImage from '../assets/Cap&Gift.png'; 
+import balloonImage from '../assets/Balloon.png'; 
+import glitterImage from '../assets/Asset 1.png'; 
+import musicNoteImage from '../assets/Purple tone.png'; 
+
 
 export default function Details1() {
   // FIX 2: Receive previous state, including userId
@@ -85,6 +89,9 @@ export default function Details1() {
         {/* 3. Visuals Section */}
         <div className="visuals-section">
           <img src={presentImage} alt="Present" className="visual-present" />
+          {/* Floating assets */}
+        <img src={balloonImage} alt="Balloon" className="floating-balloon1" />
+        <img src={glitterImage} alt="Glitter" className="floating-glitter1" />
         </div>
         
         {/* 4. Form Fields */}
@@ -125,6 +132,7 @@ export default function Details1() {
         
         {/* 5. Proceed Button */}
         <div className="button-wrapper-two">
+          <img src={musicNoteImage} alt="Music Note" className="floating-music-note1" />
           <button onClick={next} className="proceed-button">
             Proceed
           </button>

@@ -6,7 +6,6 @@
     margin: 0 auto; 
     width: 100%;
     min-height: 100vh; /* Match Register page height behavior */
-    padding-bottom: 40px; 
     color: white; 
     background-size: cover;
     background-repeat: no-repeat;
@@ -93,12 +92,30 @@
 
 /* Visuals Section (Present/Hat/Balloon) */
 .visuals-section {
-    padding: 5px 0;
+  position: relative; /* 🔥 KEY */
+  padding: 5px 0 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .visual-present {
     width: 250px; 
     height: auto;
+}
+.floating-balloon1 {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: auto;
+}
+.floating-glitter1 {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 60px;
+  height: auto;
 }
 
 /* Input/Select Fields */
@@ -164,7 +181,7 @@
 }
 /* Proceed Button Wrapper – ONLY FOR ALIGNMENT */
 .button-wrapper-two {
-  margin-top: 20px;
+  margin-top: 8px;
  width: 100vw; 
   margin-left: calc(-50vw + 50%);
   display: flex;
@@ -178,7 +195,7 @@
   padding: 15px 0 !important;
   background-color: #faab35 !important;
   color: #29154c !important;
-  border-radius: 25px ;
+  border-radius: 40px ;
   font-size: 1em !important;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
@@ -188,4 +205,11 @@
   background-color: #e68900 !important;
   transform: scale(0.97);
 }
+.floating-music-note1 {
+  position: absolute;
+  left: calc(50% - 150px); /* relative to button */
+  width: 36px;
+  height: auto;
+}
+
 

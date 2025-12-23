@@ -9,6 +9,10 @@ import hamburgerIcon from '../assets/Hamburger.png';
 import progressBarImage from '../assets/progress bar2.png'; 
 import headphonesImage from '../assets/Headphone.png'; 
 import backgroundImage from '../assets/BG.jpg'; 
+import balloonImage from "../assets/Balloon2.png";
+import glitterImage from "../assets/Asset 1.png";
+import musicNoteImage from "../assets/Purple Music Tone.png";
+
 
 // --- ICON IMPORTS ---
 import happyIcon from '../assets/Happy.png';
@@ -139,8 +143,22 @@ export default function Details2() {
 
             {/* --- Visuals Section --- */}
             <div className="visuals2-section">
-                <img src={headphonesImage} alt="Headphones" className="visual-headphones" />
-            </div>
+  <img src={headphonesImage} alt="Headphones" className="visual-headphones" />
+
+  {/* Floating decorations */}
+  <img
+    src={balloonImage}
+    alt=""
+    className="floating-balloon2"
+  />
+<img
+    src={musicNoteImage}
+    alt=""
+    className="floating-music-note2"
+  />
+  
+</div>
+
 
             {/* --- Mood Selection Section --- */}
             <div className="selection-card mood-card">
@@ -162,10 +180,17 @@ export default function Details2() {
             
             {/* --- Proceed Button --- */}
             <div className="button-wrapper-three">
-                <button onClick={next} className="proceed-button">
-                    Proceed
-                </button>
-            </div>
+              
+  <button onClick={next} className="proceed-button">
+    Proceed
+  </button>
+ <img
+    src={glitterImage}
+    alt=""
+    className="floating-glitter2"
+  />
+</div>
+
         </div>
     </div>
   );
